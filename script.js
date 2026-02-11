@@ -1,37 +1,46 @@
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const pantallaInicial = document.getElementById("pantallaInicial");
-const pantallaFinal = document.getElementById("pantallaFinal");
-const musica = document.getElementById("musica");
+window.onload = function() {
 
-yesBtn.addEventListener("click", () => {
-    pantallaInicial.style.display = "none";
-    pantallaFinal.style.display = "flex";
-    musica.play();
-    crearCorazones();
-});
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const pantallaInicial = document.getElementById("pantallaInicial");
+    const pantallaFinal = document.getElementById("pantallaFinal");
+    const musica = document.getElementById("musica");
 
-noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
+    if (yesBtn) {
+        yesBtn.addEventListener("click", function() {
+            pantallaInicial.style.display = "none";
+            pantallaFinal.style.display = "flex";
+            musica.play();
+            crearCorazones();
+        });
+    }
 
-    noBtn.style.position = "absolute";
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-});
+    if (noBtn) {
+        noBtn.addEventListener("mouseover", function() {
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
 
-function crearCorazones() {
-    setInterval(() => {
-        const corazon = document.createElement("div");
-        corazon.classList.add("corazon");
-        corazon.innerHTML = "💖";
-        corazon.style.left = Math.random() * 100 + "vw";
-        corazon.style.fontSize = Math.random() * 20 + 20 + "px";
-        document.body.appendChild(corazon);
+            noBtn.style.position = "absolute";
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        });
+    }
 
-        setTimeout(() => {
-            corazon.remove();
-        }, 5000);
+    function crearCorazones() {
+        setInterval(function() {
+            const corazon = document.createElement("div");
+            corazon.className = "corazon";
+            corazon.innerHTML = "💖";
+            corazon.style.left = Math.random() * 100 + "vw";
+            corazon.style.fontSize = (Math.random() * 20 + 20) + "px";
+            document.body.appendChild(corazon);
 
-    }, 300);
-}
+            setTimeout(function() {
+                corazon.remove();
+            }, 5000);
+
+        }, 300);
+    }
+
+};
+
